@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lara Breaker-Rolfe — Occupational Therapy</title>
+<link rel="icon" type="image/png" href="assets/gator.png?v=2" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#478D69;
+    --green-deep:#356b50;
+    --green-light:#70A88B;
+    --green-mist:#e7f1eb;
+    --pink:#E78FB3;
+    --pink-rose:#D091A4;
+    --pink-mist:#fbeef4;
+    --amber:#f6e2bd;
+    --amber-mist:#fdf3e3;
+    --ink:#2c2a28;
+    --ink-soft:#5c5854;
+    --cream:#F7F3EC;
+    --cream-deep:#efe7d9;
+    --white:#fffdf9;
+    --shadow:0 18px 40px -18px rgba(53,107,80,.35);
+    --shadow-sm:0 8px 22px -12px rgba(53,107,80,.30);
+    --radius:26px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Quicksand',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.65;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.brand-name{font-family:'Fredoka',sans-serif;font-weight:600;line-height:1.1}
+  a{text-decoration:none;color:inherit}
+  .wrap{width:min(1180px,92vw);margin-inline:auto}
+  .full-bleed{width:100vw;margin-left:calc(50% - 50vw)}
+  section{position:relative}
+
+  /* ---------- decorative embellishments ---------- */
+  .embellish{position:absolute;pointer-events:none;z-index:0}
+  .float{animation:float 6s ease-in-out infinite}
+  .float.s{animation-duration:5s}
+  .float.l{animation-duration:7.5s}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-14px) rotate(var(--r,0deg))}}
+  @keyframes morph{0%,100%{border-radius:64% 36% 53% 47%/48% 62% 38% 52%}50%{border-radius:41% 59% 38% 62%/57% 40% 60% 43%}}
+  @keyframes morph2{0%,100%{border-radius:62% 38% 56% 44%/52% 60% 40% 48%}50%{border-radius:46% 54% 65% 35%/38% 50% 50% 62%}}
+  @media (prefers-reduced-motion:reduce){.float,.quote-photo img,.quote-photo::before{animation:none}}
+  .doodle{position:absolute;z-index:40;pointer-events:none;filter:drop-shadow(0 5px 9px rgba(40,60,50,.16))}
+
+  /* ---------- shared bits ---------- */
+  .pill{display:inline-flex;align-items:center;gap:9px;background:var(--pink-mist);color:var(--pink-rose);
+    font-weight:700;font-size:.85rem;padding:8px 16px;border-radius:999px;letter-spacing:.4px;text-transform:uppercase}
+  .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;flex:none}
+  .pill.on-green{background:rgba(255,255,255,.18);color:#fff}
+
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Fredoka';font-weight:600;
+    border:none;cursor:pointer;border-radius:999px;padding:13px 26px;font-size:1rem;transition:transform .18s,box-shadow .18s}
+  .btn:hover{transform:translateY(-3px)}
+  .btn svg{width:18px;height:18px}
+  .btn-primary{background:var(--green);color:var(--white);box-shadow:var(--shadow-sm)}
+  .btn-primary:hover{background:var(--green-deep);box-shadow:var(--shadow)}
+  .btn-pink{background:var(--pink);color:var(--white);box-shadow:0 8px 22px -12px rgba(231,143,179,.7)}
+  .btn-pink:hover{background:#dd7aa4}
+  .btn-ghost{background:transparent;color:var(--green-deep);border:2px solid rgba(71,141,105,.35)}
+  .btn-ghost:hover{border-color:var(--green);background:var(--green-mist)}
+
+  .head{text-align:center;max-width:42em;margin:0 auto 56px}
+  .head .pill{margin-bottom:16px}
+  .head h2{font-size:clamp(2rem,3.6vw,2.9rem);margin-bottom:14px}
+  .head p{color:var(--ink-soft);font-size:1.1rem}
+
+  /* ---------- nav ---------- */
+  header.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);
+    background:rgba(247,243,236,.82);border-bottom:1px solid rgba(71,141,105,.12)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand img{height:56px;width:auto;filter:drop-shadow(0 4px 8px rgba(53,107,80,.25))}
+  .brand-name{font-size:1.35rem;letter-spacing:.2px}
+  .brand-name .g{color:var(--green)} .brand-name .p{color:var(--pink-rose)} .brand-name .k{color:var(--ink)}
+  nav.links{display:flex;align-items:center;gap:30px}
+  nav.links a{font-weight:600;font-size:.98rem;color:var(--ink-soft);position:relative;transition:color .2s}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;background:var(--pink);border-radius:3px;transition:width .25s}
+  nav.links a:hover{color:var(--green-deep)} nav.links a:hover::after{width:100%}
+  .nav-cta{display:flex;align-items:center;gap:14px}
+  .menu-toggle{display:none}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;min-height:clamp(560px,82vh,780px);display:flex;align-items:center;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0}
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:68% 38%;transform:scale(1.3);transform-origin:68% 42%}
+  .hero-bg::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,rgba(36,52,44,.88) 0%,rgba(36,52,44,.58) 40%,rgba(36,52,44,.14) 70%,transparent 100%),
+               linear-gradient(0deg,rgba(36,52,44,.5),transparent 40%)}
+  .hero-content{position:relative;z-index:2;padding:48px 0;color:#fff;max-width:40em}
+  .hero .pill{margin-bottom:20px;background:rgba(255,255,255,.18);color:#fff;backdrop-filter:blur(4px)}
+  .hero h1{font-size:clamp(2rem,4.8vw,3.6rem);margin:0 0 16px;font-weight:700;color:#fff;text-shadow:0 2px 18px rgba(20,30,24,.45)}
+  .hero h1 .ln{display:block;white-space:nowrap}
+  .hero h1 .green{color:#b6e8cd} .hero h1 .pink{color:#ffc8de}
+  .hero p.lead{font-size:1.18rem;color:rgba(255,255,255,.94);max-width:30em;margin:0 0 30px;text-shadow:0 1px 10px rgba(20,30,24,.45)}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.6)}
+  .hero .btn-ghost:hover{background:rgba(255,255,255,.14);border-color:#fff}
+
+  .hero-stats{position:relative;z-index:3;width:min(1080px,92vw);margin:-46px auto 0;
+    background:var(--white);border-radius:28px;box-shadow:var(--shadow);
+    display:grid;grid-template-columns:repeat(3,1fr);padding:30px 24px}
+  .hero-stats > div{text-align:center;padding:6px 14px;position:relative}
+  .hero-stats > div + div::before{content:"";position:absolute;left:0;top:14%;height:72%;width:1px;background:rgba(71,141,105,.18)}
+  .hero-stats .n{display:block;font-family:'Fredoka';font-weight:700;font-size:1.7rem;color:var(--green-deep);line-height:1.1}
+  .hero-stats .l{font-size:.88rem;color:var(--ink-soft);font-weight:600}
+
+  /* ---------- services ---------- */
+  .services{padding:96px 0 90px}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+  .card{background:var(--white);border-radius:var(--radius);padding:32px 28px;box-shadow:var(--shadow-sm);
+    border:1px solid rgba(71,141,105,.08);transition:transform .25s,box-shadow .25s,background .25s;position:relative;overflow:hidden}
+  .card:hover{transform:translateY(-10px) scale(1.05);box-shadow:var(--shadow);background:var(--green);z-index:2}
+  .card h3,.card p{transition:color .25s}
+  .card:hover h3,.card:hover p{color:#fff}
+  .card:hover .ico{box-shadow:0 0 0 3px rgba(255,255,255,.9),0 0 0 6px rgba(255,255,255,.35)}
+  .card .ico{width:76px;height:76px;border-radius:50%;overflow:hidden;margin-bottom:20px}
+  .card .ico img{width:100%;height:100%;object-fit:cover;display:block}
+  .card:nth-child(3n+1) .ico{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--green-mist),0 8px 16px -8px rgba(53,107,80,.4)}
+  .card:nth-child(3n+2) .ico{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--pink-mist),0 8px 16px -8px rgba(53,107,80,.4)}
+  .card:nth-child(3n) .ico{box-shadow:0 0 0 3px #fff,0 0 0 6px var(--amber-mist),0 8px 16px -8px rgba(53,107,80,.4)}
+  .card h3{font-size:1.3rem;margin-bottom:8px;color:var(--green-deep)}
+  .card p{color:var(--ink-soft);font-size:.98rem}
+
+  /* ---------- about ---------- */
+  .about{padding:90px 0;background:var(--green-mist)}
+  .about-grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:56px;align-items:center}
+  .photo-stack{position:relative}
+  .photo-stack::before,.photo-stack::after{content:"";position:absolute;inset:0;border-radius:22px;border:7px solid #fff;
+    background-size:cover;background-position:center;box-shadow:var(--shadow-sm);z-index:0}
+  .photo-stack::before{background-image:url('assets/step2.jpg');transform:rotate(-6deg) translate(-18px,12px)}
+  .photo-stack::after{background-image:url('assets/step3.jpg');transform:rotate(5deg) translate(18px,-10px)}
+  .photo-frame{position:relative;z-index:1;border-radius:22px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/4.6;transform:rotate(-2.5deg);border:7px solid #fff}
+  .photo-frame img{width:100%;height:100%;object-fit:cover}
+  .photo-frame .badge{position:absolute;right:18px;bottom:18px;background:var(--white);border-radius:18px;
+    padding:12px 18px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:10px}
+  .photo-frame .badge img{width:38px;height:auto;filter:drop-shadow(0 3px 5px rgba(53,107,80,.25))}
+  .photo-frame .badge span{font-family:'Fredoka';font-weight:600;color:var(--green-deep);font-size:.95rem;line-height:1.15}
+  .about-grid h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin:14px 0 16px}
+  .about-grid p{color:var(--ink-soft);margin-bottom:16px;font-size:1.05rem}
+  .signature{font-family:'Fredoka';font-weight:600;color:var(--pink-rose);font-size:1.25rem;margin-top:6px}
+
+  /* ---------- quote band ---------- */
+  .quote{padding:88px 0;background:linear-gradient(135deg,var(--green),var(--green-deep));color:#fff;overflow:hidden}
+  .quote-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:54px;align-items:center}
+  .quote-photo{position:relative}
+  .quote-photo::before{content:"";position:absolute;inset:-22px;z-index:0;background:var(--pink);opacity:.6;
+    border-radius:62% 38% 56% 44%/52% 60% 40% 48%;animation:morph2 18s ease-in-out infinite}
+  .quote-photo img{position:relative;z-index:1;width:100%;aspect-ratio:1/1;object-fit:cover;
+    border-radius:64% 36% 53% 47%/48% 62% 38% 52%;border:8px solid var(--cream);
+    box-shadow:0 24px 50px -18px rgba(15,35,25,.55);animation:morph 16s ease-in-out infinite}
+  .quote .mark{width:50px;height:50px;margin:0 0 16px;opacity:.85}
+  .quote blockquote{font-family:'Fredoka';font-weight:500;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.32;max-width:20em;margin:0 0 20px}
+  .quote .by{font-weight:600;color:rgba(255,255,255,.85);letter-spacing:.3px}
+
+  /* ---------- approach ---------- */
+  .approach{padding:90px 0;background:var(--pink-mist)}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:50px;position:relative}
+  .steps::before{content:"";position:absolute;top:62px;left:18%;right:18%;height:3px;
+    background:repeating-linear-gradient(90deg,var(--pink) 0 14px,transparent 14px 26px);z-index:0}
+  .step{text-align:center;padding:0 12px;position:relative;z-index:1}
+  .step .num{position:relative;width:124px;height:124px;margin:0 auto 20px}
+  .step .num-photo{width:100%;height:100%;border-radius:50%;overflow:hidden;border:5px solid #fff;box-shadow:var(--shadow-sm);transition:transform .25s,box-shadow .25s}
+  .step:hover .num-photo{transform:scale(1.1);box-shadow:var(--shadow)}
+  .step .num-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .step .num-badge{position:absolute;right:2px;bottom:2px;width:44px;height:44px;border-radius:50%;
+    display:grid;place-items:center;font-family:'Fredoka';font-weight:700;font-size:1.2rem;color:#fff;background:var(--green);border:3px solid var(--pink-mist)}
+  .step:nth-child(2) .num-badge{background:var(--pink)} .step:nth-child(3) .num-badge{background:var(--green-light)}
+  .step h3{font-size:1.25rem;margin-bottom:8px;color:var(--green-deep)}
+  .step p{color:var(--ink-soft);font-size:.97rem}
+
+  /* ---------- CTA / contact ---------- */
+  .cta{padding:120px 0 90px}
+  .cta-box{position:relative;background:linear-gradient(135deg,var(--green),var(--green-deep));
+    border-radius:40px;padding:64px 56px;color:var(--white);overflow:visible;text-align:left;box-shadow:var(--shadow)}
+  .cta-pop{position:absolute;right:8%;top:-40px;width:clamp(288px,28vw,377px);z-index:4}
+  .cta-pop img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:26px;border:6px solid #fff;
+    box-shadow:0 26px 46px -20px rgba(15,35,25,.7);display:block;transform:rotate(4deg)}
+  .cta-box h2{font-size:clamp(2rem,3.6vw,2.9rem);margin-bottom:14px;max-width:13em;position:relative;z-index:2}
+  .cta-box p{color:rgba(255,255,255,.9);font-size:1.12rem;max-width:32em;margin:0 0 30px;position:relative;z-index:2}
+  .cta-box .hero-cta{justify-content:flex-start;position:relative;z-index:2}
+  .cta-box .btn-ghost{color:#fff;border-color:rgba(255,255,255,.6)}
+  .cta-box .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+  /* ---------- footer ---------- */
+  footer{padding:56px 0 40px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;margin-bottom:40px}
+  footer h4{font-family:'Fredoka';color:var(--green-deep);margin-bottom:14px;font-size:1.05rem}
+  footer a,footer p{color:var(--ink-soft);font-size:.95rem;display:block;margin-bottom:9px;font-weight:500}
+  footer a:hover{color:var(--green)}
+  .foot-brand p{max-width:24em}
+  .foot-bottom{border-top:1px solid rgba(71,141,105,.15);padding-top:24px;display:flex;justify-content:space-between;
+    flex-wrap:wrap;gap:12px;font-size:.88rem;color:var(--ink-soft)}
+  .foot-bottom .made{display:inline-flex;align-items:center;gap:6px}
+  .foot-bottom .made svg{width:15px;height:15px;fill:var(--pink);stroke:none}
+
+  /* ---------- responsive ---------- */
+  @media(max-width:900px){
+    nav.links,.nav-cta .btn{display:none}
+    .menu-toggle{display:grid;place-items:center;width:46px;height:46px;border-radius:14px;border:2px solid rgba(71,141,105,.3);background:var(--white);cursor:pointer}
+    .menu-toggle svg{width:22px;height:22px;stroke:var(--green-deep)}
+    .about-grid,.quote-grid{grid-template-columns:1fr;gap:40px}
+    .quote-photo{max-width:360px;margin:0 auto}
+    .cards,.steps{grid-template-columns:1fr}
+    .steps::before{display:none}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .cta{padding:90px 0}
+    .cta-box{padding:48px 28px}
+    .cta-pop{display:none}
+  }
+  @media(max-width:760px){
+    .hero{min-height:clamp(520px,90vh,680px)}
+    .hero-bg::after{background:linear-gradient(0deg,rgba(36,52,44,.86),rgba(36,52,44,.4) 55%,rgba(36,52,44,.55))}
+  }
+  @media(max-width:620px){
+    .hero-stats{grid-template-columns:1fr;gap:8px}
+    .hero-stats > div + div::before{display:none}
+    .foot-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <img src="assets/gator.png?v=2" alt="Lara Breaker-Rolfe alligator logo" />
+      <span class="brand-name"><span class="g">Lara</span> <span class="p">Breaker</span><span class="k">-Rolfe</span></span>
+    </a>
+    <nav class="links">
+      <a href="#services">How I Help</a>
+      <a href="#about">About Lara</a>
+      <a href="#approach">The Journey</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Book a chat</a>
+      <button class="menu-toggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <svg class="doodle float s" style="bottom:128px;right:11%;--r:10deg" width="58" height="58" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6 62 38 96 39 69 60 79 93 50 73 21 93 31 60 4 39 38 38Z" fill="#E78FB3"/>
+    <circle cx="41" cy="53" r="4" fill="#fff"/><circle cx="59" cy="53" r="4" fill="#fff"/>
+    <path d="M42 64q8 7 16 0" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-bg">
+    <img src="assets/hero.jpg?v=2" alt="Occupational therapist playing with two happy young children" />
+  </div>
+  <div class="wrap">
+    <div class="hero-content">
+      <h1><span class="ln">Helping little ones</span><span class="ln"><span class="green">play</span>, <span class="pink">grow</span> &amp; thrive</span></h1>
+      <p class="lead">Warm, play-based occupational therapy for children — building the everyday skills they need to feel confident, capable and proud of what they can do.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Book a free chat
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#services" class="btn btn-ghost">See how I help</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hero-stats">
+  <div><span class="n">10+ yrs</span><span class="l">Clinical experience</span></div>
+  <div><span class="n">Ages 0–12</span><span class="l">Children supported</span></div>
+  <div><span class="n">Home &amp; clinic</span><span class="l">Flexible sessions</span></div>
+</div>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <svg class="doodle float l" style="top:34px;left:3%" width="92" height="60" viewBox="0 0 120 80" aria-hidden="true">
+    <path d="M34 70a22 22 0 0 1 1-43 28 28 0 0 1 53-3 19 19 0 0 1 5 46Z" fill="#fffdf9" stroke="#cfe3d6" stroke-width="3"/>
+  </svg>
+  <svg class="doodle float" style="bottom:56px;right:5%;--r:0deg" width="46" height="46" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6C54 34 66 46 94 50 66 54 54 66 50 94 46 66 34 54 6 50 34 46 46 34 50 6Z" fill="#70A88B"/>
+  </svg>
+  <div class="wrap">
+    <div class="head">
+      <h2>Big skills, built through play</h2>
+      <p>Every child is different, so every plan is too. Here are some of the areas we work on together — always at your child's pace.</p>
+    </div>
+    <div class="cards">
+      <article class="card">
+        <div class="ico"><img src="assets/svc-finemotor.jpg" alt="" /></div>
+        <h3>Fine Motor &amp; Handwriting</h3><p>Strengthening little hands for cutting, drawing, doing up buttons and forming letters with confidence.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><img src="assets/svc-sensory.jpg" alt="" /></div>
+        <h3>Sensory Processing</h3><p>Helping children understand and respond to the world around them so busy places feel calmer and safer.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><img src="assets/svc-school.jpg" alt="" /></div>
+        <h3>School Readiness</h3><p>Building focus, sitting tolerance and the practical skills that make starting school a happy adventure.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><img src="assets/svc-dailyliving.jpg" alt="" /></div>
+        <h3>Daily Living Skills</h3><p>Dressing, eating, toileting and self-care — the everyday routines that grow independence and pride.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><img src="assets/svc-emotional.jpg" alt="" /></div>
+        <h3>Emotional Regulation</h3><p>Gentle strategies to help children name big feelings, stay calm and bounce back when things feel tricky.</p>
+      </article>
+      <article class="card">
+        <div class="ico"><img src="assets/svc-grossmotor.jpg" alt="" /></div>
+        <h3>Gross Motor &amp; Play</h3><p>Balance, coordination and core strength developed through games that feel like pure fun.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <svg class="doodle float s" style="top:46px;right:6%;--r:6deg" width="70" height="60" viewBox="0 0 90 80" aria-hidden="true">
+    <path d="M45 40C32 16 6 14 8 36c2 16 26 16 37 4Z" fill="#E78FB3"/>
+    <path d="M45 40C58 16 84 14 82 36c-2 16-26 16-37 4Z" fill="#70A88B"/>
+    <ellipse cx="45" cy="40" rx="3" ry="15" fill="#356b50"/>
+    <path d="M45 27c-2-6-6-9-9-10M45 27c2-6 6-9 9-10" stroke="#356b50" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  </svg>
+  <svg class="doodle float l" style="bottom:48px;left:4%;--r:-8deg" width="44" height="44" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 86C20 64 8 48 8 30 8 16 20 8 32 8c8 0 15 4 18 12 3-8 10-12 18-12 12 0 24 8 24 22 0 18-12 34-40 56Z" fill="#E78FB3"/>
+  </svg>
+  <div class="wrap about-grid">
+    <div class="photo-stack">
+      <div class="photo-frame">
+        <img src="assets/about.jpg" alt="Lara working with a young child at a craft table" />
+        <div class="badge">
+          <img src="assets/gator.png?v=2" alt="" />
+          <span>Snappy little<br>wins, together</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h2>Hi, I'm Lara — your child's biggest cheerleader</h2>
+      <p>I'm a paediatric occupational therapist who believes therapy should never feel like hard work. When a child is laughing, exploring and playing, that's when the real magic happens.</p>
+      <p>I work alongside families to understand each child's unique strengths and challenges, then craft a fun, achievable plan that fits into real life — at home, at school and everywhere in between.</p>
+      <p>My little alligator mascot says it best: we celebrate every snappy little win, together.</p>
+      <p class="signature">— Lara Breaker-Rolfe</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUOTE BAND ===== -->
+<section class="quote">
+  <svg class="doodle float" style="top:38px;left:5%" width="56" height="56" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="20" fill="#f3c969"/>
+    <g stroke="#f3c969" stroke-width="6" stroke-linecap="round"><path d="M50 10v12M50 78v12M10 50h12M78 50h12M21 21l8 8M71 71l8 8M79 21l-8 8M29 71l-8 8"/></g>
+  </svg>
+  <svg class="doodle float s" style="bottom:44px;right:7%;--r:12deg" width="40" height="40" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6C54 34 66 46 94 50 66 54 54 66 50 94 46 66 34 54 6 50 34 46 46 34 50 6Z" fill="#fffdf9"/>
+  </svg>
+  <div class="wrap quote-grid">
+    <div class="quote-photo">
+      <img src="assets/quote.jpg?v=2" alt="A happy child laughing during a therapy session" />
+    </div>
+    <div class="quote-text">
+      <svg class="mark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7H4a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h2v1a2 2 0 0 1-2 2H3v3h1a5 5 0 0 0 5-5V9a2 2 0 0 0-2-2Zm13 0h-3a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h2v1a2 2 0 0 1-2 2h-1v3h1a5 5 0 0 0 5-5V9a2 2 0 0 0-2-2Z"/></svg>
+      <blockquote>Lara has a gift. Our son looks forward to every session and we've seen him grow more confident than we ever imagined.</blockquote>
+      <div class="by">— A grateful parent, Sunshine Coast</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPROACH ===== -->
+<section class="approach" id="approach">
+  <svg class="doodle float l" style="top:34px;right:6%;--r:8deg" width="86" height="52" viewBox="0 0 120 70" aria-hidden="true">
+    <path d="M12 64a48 48 0 0 1 96 0" fill="none" stroke="#E78FB3" stroke-width="8"/>
+    <path d="M26 64a34 34 0 0 1 68 0" fill="none" stroke="#f3c969" stroke-width="8"/>
+    <path d="M40 64a20 20 0 0 1 40 0" fill="none" stroke="#70A88B" stroke-width="8"/>
+  </svg>
+  <svg class="doodle float" style="top:58px;left:5%" width="42" height="42" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6C54 34 66 46 94 50 66 54 54 66 50 94 46 66 34 54 6 50 34 46 46 34 50 6Z" fill="#E78FB3"/>
+  </svg>
+  <div class="wrap">
+    <div class="head">
+      <h2>Getting started is easy</h2>
+      <p>Three simple, no-pressure steps from first hello to happy progress.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num"><div class="num-photo"><img src="assets/step1.jpg" alt="" /></div><span class="num-badge">1</span></div>
+        <h3>Say hello</h3><p>Book a free, friendly chat so I can hear about your child and what you're hoping for.</p>
+      </div>
+      <div class="step">
+        <div class="num"><div class="num-photo"><img src="assets/step2.jpg" alt="" /></div><span class="num-badge">2</span></div>
+        <h3>Playful assessment</h3><p>We get to know your child through play, then build a tailored plan around their strengths.</p>
+      </div>
+      <div class="step">
+        <div class="num"><div class="num-photo"><img src="assets/step3.jpg" alt="" /></div><span class="num-badge">3</span></div>
+        <h3>Grow together</h3><p>Fun, regular sessions plus easy ideas for home — celebrating every win along the way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA / CONTACT ===== -->
+<section class="cta" id="contact">
+  <svg class="doodle float" style="top:54px;left:5%;--r:-12deg" width="60" height="60" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M8 50 92 12 64 92 50 62Z" fill="#9cc7ae"/>
+    <path d="M50 62 92 12" fill="none" stroke="#356b50" stroke-width="3"/>
+    <path d="M8 50 50 62" fill="none" stroke="#356b50" stroke-width="3"/>
+  </svg>
+  <svg class="doodle float s" style="bottom:60px;left:8%;--r:10deg" width="40" height="40" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M50 6 62 38 96 39 69 60 79 93 50 73 21 93 31 60 4 39 38 38Z" fill="#f3c969"/>
+  </svg>
+  <div class="wrap">
+    <div class="cta-box">
+      <div class="cta-pop"><img src="assets/cta.jpg" alt="A happy child waving" /></div>
+      <h2>Ready to see your little one thrive?</h2>
+      <p>Let's have a relaxed, no-obligation chat about how occupational therapy could help your family. I'd love to hear from you.</p>
+      <div class="hero-cta">
+        <a href="mailto:hello@larabreakerrolfe.com.au" class="btn btn-pink">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          hello@larabreakerrolfe.com.au
+        </a>
+        <a href="tel:+61400000000" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L20 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg>
+          0400 000 000
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="brand" href="#top" style="margin-bottom:14px">
+          <img src="assets/gator.png?v=2" alt="" style="height:46px" />
+          <span class="brand-name" style="font-size:1.15rem"><span class="g">Lara</span> <span class="p">Breaker</span><span class="k">-Rolfe</span></span>
+        </a>
+        <p>Warm, play-based paediatric occupational therapy helping children build confidence and everyday skills.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#services">How I Help</a>
+        <a href="#about">About Lara</a>
+        <a href="#approach">The Journey</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <a href="#services">Fine Motor Skills</a>
+        <a href="#services">Sensory Processing</a>
+        <a href="#services">School Readiness</a>
+        <a href="#services">Daily Living</a>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <a href="mailto:hello@larabreakerrolfe.com.au">hello@larabreakerrolfe.com.au</a>
+        <a href="tel:+61400000000">0400 000 000</a>
+        <p>Mon–Fri · Home &amp; clinic visits</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Lara Breaker-Rolfe Occupational Therapy</span>
+      <span class="made">Made with
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-4.4-7-9.3A3.7 3.7 0 0 1 12 9a3.7 3.7 0 0 1 7 2.7C19 16.6 12 21 12 21Z"/></svg>
+        &amp; a friendly little gator</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu toggle (simple demo)
+  document.querySelector('.menu-toggle')?.addEventListener('click',()=>{
+    const l=document.querySelector('nav.links');
+    if(getComputedStyle(l).display==='none'){
+      l.style.display='flex';l.style.position='absolute';l.style.flexDirection='column';
+      l.style.top='70px';l.style.right='4vw';l.style.background='var(--white)';
+      l.style.padding='18px 24px';l.style.borderRadius='18px';l.style.boxShadow='var(--shadow)';l.style.gap='16px';l.style.zIndex='60';
+    } else { l.style.display='none'; }
+  });
+</script>
+</body>
+</html>
